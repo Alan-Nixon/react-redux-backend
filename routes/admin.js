@@ -9,4 +9,7 @@ router.get('/getUsers', adminController.getUsers)
 router.get('/blockuser', adminController.blockuser)
 router.get('/searchuser',adminController.searchuser)
 
+router.post('/adminUserEdit',adminController.adminUserEdit)
+router.get('/deleteUser',adminController.deleteUser)
+
 module.exports = router;

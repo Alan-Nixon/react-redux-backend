@@ -9,7 +9,7 @@ const adminAuthenticated = (req, res) => {
 }
 
 const getUsers = async (req, res) => {
-    let users = await User.find();
+    let users = await User.find({ isAdmin: false });
     res.status(200).json({ users });
 };
 
@@ -41,6 +41,36 @@ const searchuser = async (req, res) => {
     }
 }
 
+const adminUserEdit = async (req, res) => {
+    console.log(req.body);
+    const { FName, LName, FullName, Email } = req.body
+    let isDone = true
+    try {
+        await User.findByIdAndUpdate(req.body._id, {
+            FName,
+            LName,
+            FullName,
+            Email
+        })
+    } catch (e) {
+        isDone = false
+        console.error(e);
+    }
+    res.status(200).json({ isDone })
+}
+
+const deleteUser = async (req,res) => { 
+    console.log(req.query);
+    let status = true
+    try {
+        await User.findByIdAndDelete(req.query.userId)
+    } catch (error) {
+        status = false
+        console.error(error);
+    } 
+    res.status(200).json({status})
+} 
+
 module.exports = {
-    adminDashboard, adminAuthenticated, getUsers, blockuser, searchuser
+    adminDashboard, adminAuthenticated, getUsers, blockuser, searchuser, adminUserEdit, deleteUser
 }

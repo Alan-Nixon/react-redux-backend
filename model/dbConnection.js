@@ -22,6 +22,8 @@ const userSchema = new mongoose.Schema({
     FullName: String,
     Email: String,
     Password: String,
+    Phone: Number,
+    profileImage: String,
     isAdmin: Boolean,
     isBlocked: Boolean
 })

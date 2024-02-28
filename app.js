@@ -16,11 +16,13 @@ app.set('view engine', 'ejs');
 
 
 app.use(cors({
-  origin: "*",
+  origin: 'http://localhost:3000',
   methods: ['GET', 'POST'],
   credentials: true,
   allowedHeaders: ['Content-Type', 'Authorization', 'Cookie'],
 }));
+
+
 
 
 app.use(logger('dev'));
